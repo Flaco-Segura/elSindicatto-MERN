@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
 import LinesEllipsis from 'react-lines-ellipsis';
+import Rating from './Rating';
 
 const Disc = ({disc}) => {
     return (
@@ -12,20 +13,21 @@ const Disc = ({disc}) => {
             <Card.Body>
                 <a href={`/disc/${disc._id}`}>
                     <Card.Title as='div'>
-                        <LinesEllipsis
-                            text={disc.name}
-                            maxLine='2'
-                            ellipsis='...'
-                            trimRight
-                            basedOn='letters'
-                            component='strong'
-                        />
+                        <strong>
+                            <LinesEllipsis
+                                text={disc.name}
+                                maxLine='2'
+                                ellipsis='...'
+                                trimRight
+                                basedOn='letters'
+                            />
+                        </strong>
                     </Card.Title>
                 </a>
                 <Card.Text as='div'>
-                    <div className='my-3'>
-                        {disc.rating} from {disc.numReviews} reviews
-                    </div>
+                    <Rating 
+                        value={disc.rating}
+                        text={`${disc.numReviews} revs`}/>
                 </Card.Text>
                 <Card.Text as='h3'>{disc.price}€</Card.Text>
             </Card.Body>

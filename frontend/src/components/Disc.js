@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Card } from 'react-bootstrap';
 import LinesEllipsis from 'react-lines-ellipsis';
 import Rating from './Rating';
@@ -6,12 +7,12 @@ import Rating from './Rating';
 const Disc = ({disc}) => {
     return (
         <Card className='my-3 p-3 rounded'>
-            <a href={`/disc/${disc._id}`}>
+            <Link to={`/disc/${disc._id}`}>
                 <Card.Img src={disc.image} variant='top'/>
-            </a>
+            </Link>
 
             <Card.Body>
-                <a href={`/disc/${disc._id}`}>
+                <Link to={`/disc/${disc._id}`}>
                     <Card.Title as='div'>
                         <strong>
                             <LinesEllipsis
@@ -23,7 +24,7 @@ const Disc = ({disc}) => {
                             />
                         </strong>
                     </Card.Title>
-                </a>
+                </Link>
                 <Card.Text as='div'>
                     <Rating 
                         value={disc.rating}

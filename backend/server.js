@@ -1,6 +1,6 @@
-const express = require('express')
-const dotenv = require('dotenv')
-const discs = require('./data/discs')
+import express from 'express'
+import dotenv from 'dotenv'
+import discs from './data/discs.js'
 
 dotenv.config()
 

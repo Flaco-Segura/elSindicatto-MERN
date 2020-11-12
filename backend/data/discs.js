@@ -385,4 +385,4 @@ const discs = [
     },
 ]
 
-module.exports = discs
+export default discs

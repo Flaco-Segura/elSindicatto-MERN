@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap';
 import Rating from '../components/Rating';
-import discs from '../discs';
+import axios from 'axios';
 
 const DiscScreen = ({ match }) => {
-    const disc = discs.find(p => p._id === match.params.id);
+    const [disc, setDisc] = useState({})
+
+    useEffect(() => {
+        const fetchDisc = async () => {
+            const { data } = await axios.get(`/api/disc/${match.params.id}`)
+
+            setDisc(data)
+        }
+
+        fetchDisc()
+    }, [match])
 
     return <>
         <Link className='btn btn-light my-3' to='/'>Go Back</Link>

@@ -2,7 +2,8 @@ import express from 'express'
 import dotenv from 'dotenv'
 import connectDB from './config/db.js'
 import colors from 'colors'
-import discs from './data/discs.js'
+
+import discRoutes from './routes/discRoutes.js'
 
 dotenv.config()
 
@@ -14,14 +15,7 @@ app.get('/', (req, res) => {
     res.send('API is running...')
 })
 
-app.get('/api/discs/', (req, res) => {
-    res.json(discs)
-})
-
-app.get('/api/disc/:id', (req, res) => {
-    const disc = discs.find(p => p._id === req.params.id)
-    res.json(disc)
-})
+app.use('/api/discs', discRoutes)
 
 const PORT = process.env.PORT || 5000
 

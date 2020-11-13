@@ -21,7 +21,8 @@ router.get('/:id', asyncHandler(async (req, res) => {
     if (disc) {
         res.json(disc)
     } else {
-        res.status(404).json({ message: 'Disc not found' })
+        res.status(404)
+        throw new Error('Disc not found')
     }
 }))
 

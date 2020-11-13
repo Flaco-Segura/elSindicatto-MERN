@@ -9,7 +9,7 @@ const DiscScreen = ({ match }) => {
 
     useEffect(() => {
         const fetchDisc = async () => {
-            const { data } = await axios.get(`/api/disc/${match.params.id}`)
+            const { data } = await axios.get(`/api/discs/${match.params.id}`)
 
             setDisc(data)
         }

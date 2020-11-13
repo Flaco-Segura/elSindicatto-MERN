@@ -2,6 +2,7 @@ import express from 'express'
 import dotenv from 'dotenv'
 import connectDB from './config/db.js'
 import colors from 'colors'
+import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 
 import discRoutes from './routes/discRoutes.js'
 
@@ -16,6 +17,10 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/discs', discRoutes)
+
+app.use(notFound)
+
+app.use(errorHandler)
 
 const PORT = process.env.PORT || 5000
 

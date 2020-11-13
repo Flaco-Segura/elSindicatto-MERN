@@ -1,6 +1,5 @@
 const discs = [
     {
-        _id: '1',
         name: 'The Amason Twins - Hallelujah! The lord is coming again',
         image: '/images/worst-album-covers-amason-twins.jpg',
         format: 'Vinyl, LP, Album',
@@ -12,7 +11,6 @@ const discs = [
         numReviews: 1,
     },
     {
-        _id: '2',
         name: 'Anna Russel - In darkest Africa',
         image: '/images/worst-album-covers-anna-russel.jpg',
         format: 'LP, Album, Mono',
@@ -24,7 +22,6 @@ const discs = [
         numReviews: 3,
     },
     {
-        _id: '3',
         name: 'The Bee Gees - Life in a tin can',
         image: '/images/worst-album-covers-bee-gees.jpg',
         format: 'LP, Album, Spe',
@@ -36,7 +33,6 @@ const discs = [
         numReviews: 210,
     },
     {
-        _id: '4',
         name: 'Black Sabbath - Born again',
         image: '/images/worst-album-covers-born-again.jpg',
         format: 'LP, Album',
@@ -48,7 +44,6 @@ const discs = [
         numReviews: 1944,
     },
     {
-        _id: '5',
         name: 'Country Church',
         image: '/images/worst-album-covers-country-church.jpg',
         format: 'Vinyl, LP, Album',
@@ -60,7 +55,6 @@ const discs = [
         numReviews: 2,
     },
     {
-        _id: '6',
         name: 'Elna Fredhoy og Rigmor Odum',
         image: '/images/worst-album-covers-elma-fredhey.jpg',
         format: 'LP, Album, Mono',
@@ -72,7 +66,6 @@ const discs = [
         numReviews: 0,
     },
     {
-        _id: '7',
         name: 'Fabio - After dark',
         image: '/images/worst-album-covers-fabio-after-dark.jpg',
         format: 'CD, Album, Promo',
@@ -84,7 +77,6 @@ const discs = [
         numReviews: 4,
     },
     {
-        _id: '8',
         name: 'Freddie Gage - All my friends are dead',
         image: '/images/worst-album-covers-freddie-gage.jpg',
         format: 'Vinyl, LP, Album',
@@ -96,7 +88,6 @@ const discs = [
         numReviews: 5,
     },
     {
-        _id: '9',
         name: 'The Frivolous F.I.V.E - Sour cream & other delights',
         image: '/images/worst-album-covers-frivolous-five.jpg',
         format: 'LP, Album, Mono',
@@ -108,7 +99,6 @@ const discs = [
         numReviews: 7,
     },
     {
-        _id: '10',
         name: 'Heino - Liebe mutter...',
         image: '/images/worst-album-covers-heino.jpg',
         format: 'LP, Album, Gat',
@@ -120,7 +110,6 @@ const discs = [
         numReviews: 15,
     },
     {
-        _id: '11',
         name: 'The Faith Tones - Jesus use me',
         image: '/images/worst-album-covers-jesus-use-me.jpg',
         format: 'Vinyl, LP, Album',
@@ -132,7 +121,6 @@ const discs = [
         numReviews: 6,
     },
     {
-        _id: '12',
         name: 'Jim Post - I love my life',
         image: '/images/worst-album-covers-jim-post.jpg',
         format: 'LP, Album',
@@ -144,7 +132,6 @@ const discs = [
         numReviews: 2,
     },
     {
-        _id: '13',
         name: 'Ken - By request only',
         image: '/images/worst-album-covers-ken.jpg',
         format: 'Vinyl, LP, Album, Stereo',
@@ -156,7 +143,6 @@ const discs = [
         numReviews: 5,
     },
     {
-        _id: '14',
         name: 'Kevin Rowland - My beauty',
         image: '/images/worst-album-covers-kevin-rowland.jpg',
         format: 'CD, Album',
@@ -168,7 +154,6 @@ const discs = [
         numReviews: 55,
     },
     {
-        _id: '15',
         name: "Kjell Kraghe och Rick Löw's Orkester - Wind i seglen",
         image: '/images/worst-album-covers-kjell-kraghe.jpg',
         format: 'LP, Album',
@@ -180,7 +165,6 @@ const discs = [
         numReviews: 1,
     },
     {
-        _id: '16',
         name: 'The Ministers Quartet - Let me touch him',
         image: '/images/worst-album-covers-let-me-touch-him.jpg',
         format: 'Vinyl, LP, Album, Stereo',
@@ -192,7 +176,6 @@ const discs = [
         numReviews: 4,
     },
     {
-        _id: '17',
         name: 'Crosby Stills Nash - Live it up',
         image: '/images/worst-album-covers-live-it-up.jpg',
         format: 'Unknown',
@@ -204,7 +187,6 @@ const discs = [
         numReviews: 0,
     },
     {
-        _id: '18',
         name: 'The Louvin Brothers - Satan is real',
         image: '/images/worst-album-covers-louvin-brothers.jpg',
         format: 'LP, Album, Mono',
@@ -216,7 +198,6 @@ const discs = [
         numReviews: 208,
     },
     {
-        _id: '19',
         name: 'Maddy Genets et son ensemble - Acropolis',
         image: '/images/worst-album-covers-maddy-genets.jpg',
         format: '7", EP',
@@ -228,7 +209,6 @@ const discs = [
         numReviews: 2,
     },
     {
-        _id: '20',
         name: 'ManOwar - Anthology',
         image: '/images/worst-album-covers-manowar.jpg',
         format: 'CD, Compilation',
@@ -240,7 +220,6 @@ const discs = [
         numReviews: 28,
     },
     {
-        _id: '21',
         name: 'Millie Jackson - Back to the s@#t!',
         image: '/images/worst-album-covers-millie-jackson.jpg',
         format: 'CD, Album',
@@ -252,7 +231,6 @@ const discs = [
         numReviews: 31,
     },
     {
-        _id: '22',
         name: 'Orleans - Waking and dreaming',
         image: '/images/worst-album-covers-orleans.jpg',
         format: 'Vinyl, 7", 45 RPM, Single, Promo',
@@ -264,7 +242,6 @@ const discs = [
         numReviews: 1,
     },
     {
-        _id: '23',
         name: 'Paddy Roberts - Songs for gay dogs',
         image: '/images/worst-album-covers-paddy-roberts.jpg',
         format: 'LP, Album, Mono',
@@ -276,7 +253,6 @@ const discs = [
         numReviews: 7,
     },
     {
-        _id: '24',
         name: 'Prince - Sexuality',
         image: '/images/worst-album-covers-prince.jpg',
         format: '12", Maxi, Ltd',
@@ -288,7 +264,6 @@ const discs = [
         numReviews: 57,
     },
     {
-        _id: '25',
         name: 'Swamp Dogg - Rat on!',
         image: '/images/worst-album-covers-rat-on.jpg',
         format: 'LP, Album',
@@ -300,7 +275,6 @@ const discs = [
         numReviews: 77,
     },
     {
-        _id: '26',
         name: 'Richard & Willie - Funky honkey, nasty nigger',
         image: '/images/worst-album-covers-richard-willie.jpg',
         format: 'Vinyl, LP, Album',
@@ -312,7 +286,6 @@ const discs = [
         numReviews: 7,
     },
     {
-        _id: '27',
         name: 'Ted Nugent - Scream dream',
         image: '/images/worst-album-covers-scream-dream.jpg',
         format: 'LP, Album, San',
@@ -324,7 +297,6 @@ const discs = [
         numReviews: 376,
     },
     {
-        _id: '28',
         name: 'Svetlana Gruebbersolvik - My lips are for blowing',
         image: '/images/worst-album-covers-svetlana.jpg',
         format: 'Unknown',
@@ -336,7 +308,6 @@ const discs = [
         numReviews: 0,
     },
     {
-        _id: '29',
         name: 'Dick Black and his band - A taste of Dick Black',
         image: '/images/worst-album-covers-taste-of.jpg',
         format: 'CD, Album',
@@ -348,7 +319,6 @@ const discs = [
         numReviews: 3,
     },
     {
-        _id: '30',
         name: 'The Handsome Beasts - Beastiality',
         image: '/images/worst-album-covers-the-handsome-beast.jpg',
         format: 'LP, Album',
@@ -360,7 +330,6 @@ const discs = [
         numReviews: 42,
     },
     {
-        _id: '31',
         name: 'Tino - Por primera vez',
         image: '/images/worst-album-covers-tino.jpg',
         format: 'Vinyl, LP, Album',
@@ -372,7 +341,6 @@ const discs = [
         numReviews: 5,
     },
     {
-        _id: '32',
         name: "Wally Whyton - It's me, mum!",
         image: '/images/worst-album-covers-wally-whiton.jpg',
         format: 'Vinyl, LP, Album',

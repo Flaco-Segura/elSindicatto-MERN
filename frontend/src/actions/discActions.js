@@ -16,12 +16,11 @@ export const listDisc = () => async (dispatch) => {
             payload: data
         })
     } catch (error) {
-        dispatch({ 
+        dispatch({
             type: DISC_LIST_FAIL,
-            payload: error.response && error.response.data.message
+            payload: error.response && error.response.data.messages
                 ? error.response.data.message
                 : error.message
-        
         })
     }
 }

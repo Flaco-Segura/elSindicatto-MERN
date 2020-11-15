@@ -16,7 +16,6 @@ const DiscScreen = ({ history, match }) => {
     const { loading, error, disc } = discDetails
 
     useEffect(() => {
-        console.log(match.params.id)
         dispatch(listDiscDetails(match.params.id))
     }, [dispatch, match])
 

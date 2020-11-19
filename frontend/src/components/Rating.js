@@ -36,6 +36,7 @@ const icon = (value, position) => {
 }
 
 Rating.defaultProps = {
+    value: 0,
     color: '#f8e825'
 }
 

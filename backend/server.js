@@ -5,6 +5,7 @@ import colors from 'colors'
 import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 
 import discRoutes from './routes/discRoutes.js'
+import userRoutes from './routes/userRoutes.js'
 
 dotenv.config()
 
@@ -12,11 +13,14 @@ connectDB()
 
 const app = express()
 
+app.use(express.json())
+
 app.get('/', (req, res) => {
     res.send('API is running...')
 })
 
 app.use('/api/discs', discRoutes)
+app.use('/api/users', userRoutes)
 
 app.use(notFound)
 

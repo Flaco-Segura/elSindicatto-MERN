@@ -6,7 +6,7 @@ import User from '../models/userModel.js'
 const protect = asyncHandler(async (req, res, next) => {
     let token
 
-    if(req.header.authorization && req.headers.authorization.startsWith('Bearer')) {
+    if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
         try {
             token = req.headers.authorization.split(' ')[1]
 

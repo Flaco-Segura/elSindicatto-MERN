@@ -71,6 +71,7 @@ const registerUser = asyncHandler(async(req, res) => {
         throw new Error('Invalid user data')
     }
 })
+
 // @desc    Update user profile
 // @route   PUT /api/users/profile
 // @access  Private

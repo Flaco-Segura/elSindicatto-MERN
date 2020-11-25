@@ -19,3 +19,7 @@ h3 {
 .rating span {
   margin: 0.1rem;
 }
+
+.payment-method-icon-size{
+  font-size: 2em;
+}

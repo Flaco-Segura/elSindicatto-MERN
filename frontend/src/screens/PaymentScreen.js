@@ -38,7 +38,7 @@ const PaymentScreen = ({ history }) => {
                                         aria-label='paypal'
                                         name='paymentMethod'
                                         value='PayPal'
-                                        checked 
+                                        checked
                                         onChange={(e) => setPaymentMethod(e.target.value)}
                                     ></Form.Check>
                                 </Col>
@@ -46,7 +46,7 @@ const PaymentScreen = ({ history }) => {
                                     <i className="fab fa-paypal payment-method-icon-size"></i>
                                 </Col>
                                 <Col md={10}>
-                                    <Form.Check.Label>PayPal of Credit Card</Form.Check.Label>
+                                    <Form.Check.Label>PayPal or Credit Card</Form.Check.Label>
                                 </Col>
                             </Row>
                             {/* <Row>

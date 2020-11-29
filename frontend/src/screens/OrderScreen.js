@@ -22,7 +22,7 @@ const OrderScreen = ({ match }) => {
     
     useEffect(() => {
         dispatch(getOrderDetails(orderId))
-    }, [orderId])
+    }, [dispatch, orderId])
 
     return loading
         ? <Loader />

@@ -33,7 +33,7 @@ const addOrdersItems = asyncHandler(async(req, res) => {
 
         const createdOrder = await order.save()
 
-        res.status(201).json({createdOrder})
+        res.status(201).json(createdOrder)
     }
 })
 
@@ -41,7 +41,7 @@ const addOrdersItems = asyncHandler(async(req, res) => {
 // @route   GET /api/orders/:id
 // @access  Private
 const getOrderById = asyncHandler(async(req, res) => {
-    const order = await findById(req.params.id).populate('user', 'name', 'email')
+    const order = await Order.findById(req.params.id).populate('user', 'name email')
 
     if(order) {
         res.json(order)

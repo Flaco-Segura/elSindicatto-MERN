@@ -87,25 +87,25 @@ const OrderScreen = ({ match }) => {
                                 <ListGroup.Item>
                                     <Row>
                                         <Col>Items</Col>
-                                        <Col>{order.itemsPrice}€</Col>
+                                        <Col>{ ammountFixed(order.itemsPrice) }€</Col>
                                     </Row>
                                 </ListGroup.Item>
                                 <ListGroup.Item>
                                     <Row>
                                         <Col>Shipping Price</Col>
-                                        <Col>{order.shippingPrice}€</Col>
+                                        <Col>{ ammountFixed(order.shippingPrice) }€</Col>
                                     </Row>
                                 </ListGroup.Item>
                                 <ListGroup.Item>
                                     <Row>
                                         <Col>Tax</Col>
-                                        <Col>{order.taxPrice}€</Col>
+                                        <Col>{ ammountFixed(order.taxPrice) }€</Col>
                                     </Row>
                                 </ListGroup.Item>
                                 <ListGroup.Item>
                                     <Row>
                                         <Col>Total</Col>
-                                        <Col>{order.totalPrice}€</Col>
+                                        <Col>{ ammountFixed(order.totalPrice)}€</Col>
                                     </Row>
                                 </ListGroup.Item>
                             </ListGroup>
@@ -114,6 +114,10 @@ const OrderScreen = ({ match }) => {
                 </Row>
               </>
         
+}
+
+const ammountFixed = ammount => {
+    return Number(ammount).toFixed(2)
 }
 
 export default OrderScreen

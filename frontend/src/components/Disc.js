@@ -30,7 +30,7 @@ const Disc = ({disc}) => {
                         value={disc.rating}
                         text={`${disc.numReviews} revs`}/>
                 </Card.Text>
-                <Card.Text as='h3'>{disc.price}€</Card.Text>
+                <Card.Text as='h3'>{ Number(disc.price).toFixed(2) }€</Card.Text>
             </Card.Body>
         </Card>
     )

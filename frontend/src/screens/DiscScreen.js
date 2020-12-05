@@ -42,7 +42,7 @@ const DiscScreen = ({ history, match }) => {
                                 <Rating value={disc.rating} text={`${disc.numReviews} reviews`}></Rating>
                             </ListGroup.Item>
                             <ListGroup.Item>
-                                Price: {disc.price}€
+                                Price: {Number(disc.price).toFixed(2)}€
                             </ListGroup.Item>
                             <ListGroup.Item>
                                 Format: {disc.format}
@@ -58,7 +58,7 @@ const DiscScreen = ({ history, match }) => {
                                             Price:
                                         </Col>
                                         <Col>
-                                            <strong>{disc.price}€</strong>
+                                            <strong>{ Number(disc.price).toFixed(2) }€</strong>
                                         </Col>
                                     </Row>
                                 </ListGroup.Item>

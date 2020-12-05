@@ -21,7 +21,7 @@ export const listDisc = () => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: DISC_LIST_FAIL,
-            payload: error.response && error.response.data.messages
+            payload: error.response && error.response.data.message
                 ? error.response.data.message
                 : error.message
         })
@@ -41,7 +41,7 @@ export const listDiscDetails = (id) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: DISC_DETAILS_FAIL,
-            payload: error.response && error.response.data.messages
+            payload: error.response && error.response.data.message
                 ? error.response.data.message
                 : error.message
         })

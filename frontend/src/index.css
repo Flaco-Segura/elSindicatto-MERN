@@ -23,3 +23,7 @@ h3 {
 .payment-method-icon-size{
   font-size: 2em;
 }
+
+.centered {
+  text-align: center;
+}

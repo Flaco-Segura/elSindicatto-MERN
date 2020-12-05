@@ -11,18 +11,12 @@ const Rating = ({ value, text, color }) => {
 }
 
 const stars = (value, color) => {
-    let stars = [];
-
-    [1,2,3,4,5].forEach(position => {
-        stars.push(
-            <span key={position}>
-                <i  style={{color}}
-                    className={icon(value, position)}></i>
-            </span>
-        )
-    });
-
-    return stars
+    return [1,2,3,4,5].map(position => 
+        position = <span key={position}>
+                    <i  style={{color}}
+                        className={icon(value, position)}></i>
+                    </span>  
+    )
 }
 
 const icon = (value, position) => {

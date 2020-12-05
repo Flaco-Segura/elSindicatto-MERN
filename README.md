@@ -17,6 +17,7 @@ NODE_ENV = development
 PORT = 5000
 MONGO_URI = your mongodb uri
 JWT_SECRET = your jwt secret
+PAYPAL_CLIENT_ID = your client id
 ```
 
 ### Install Dependencies (frontend & backend)

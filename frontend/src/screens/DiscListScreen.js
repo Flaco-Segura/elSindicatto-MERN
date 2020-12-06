@@ -4,9 +4,11 @@ import { Table, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
-import { listDisc } from '../actions/discActions'
+import { listDisc, deleteDisc } from '../actions/discActions'
 
 const DiscListScreen = ({ history, match }) => {
+    // const discId = match.params.id
+
     const dispatch = useDispatch()
 
     const discList = useSelector(state => state.discList)
@@ -15,17 +17,20 @@ const DiscListScreen = ({ history, match }) => {
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
 
+    const discDelete = useSelector(state => state.discDelete)
+    const { loading: loadingDelete, error: errorDelete, success: successDelete } = discDelete
+
     useEffect(() => {
         if(userInfo && userInfo.isAdmin) {
             dispatch(listDisc())
         } else {
             history.push('/login')
         }
-    }, [dispatch, history, userInfo])
+    }, [dispatch, history, userInfo, successDelete])
 
     const deleteHandler = (id) => {
         if(window.confirm('Are you sure?')) {
-           // DELETE DISC
+           dispatch(deleteDisc(id))
         }
     }
 
@@ -45,6 +50,8 @@ const DiscListScreen = ({ history, match }) => {
                     </Button>
                 </Col>
             </Row>
+            { loadingDelete && <Loader /> }
+            { errorDelete && <Message variant='danger'>{ errorDelete }</Message> }
             {
                 loading
                     ? <Loader />

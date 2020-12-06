@@ -39,4 +39,24 @@ const deleteDisc = asyncHandler(async(req, res) => {
     }
 })
 
-export { getDiscs, getDiscById, deleteDisc }
+// @desc    Create a disc
+// @route   POST /api/discs/:id
+// @access  Private/Admin
+const createDisc = asyncHandler(async(req, res) => {
+    const disc = new Disc({
+        name: 'El Sindicatto',
+        price: 0.00,
+        user: req.user._id,
+        image: '/images/elsindicatto.png',
+        brand: 'El Sindicatto',
+        category: 'El Sindicatto',
+        countInStock: 0,
+        numReviews: 0,
+        format: 'LP'
+    })
+
+    const createdDisc = await disc.save()
+    res.status(201).json(createdDisc)
+})
+
+export { getDiscs, getDiscById, deleteDisc, createDisc }

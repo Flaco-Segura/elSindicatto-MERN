@@ -4,7 +4,8 @@ import { Table, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
-import { listDisc, deleteDisc } from '../actions/discActions'
+import { listDisc, deleteDisc, createDisc } from '../actions/discActions'
+import { DISC_CREATE_RESET } from '../constants/discConstants'
 
 const DiscListScreen = ({ history, match }) => {
     // const discId = match.params.id
@@ -20,13 +21,26 @@ const DiscListScreen = ({ history, match }) => {
     const discDelete = useSelector(state => state.discDelete)
     const { loading: loadingDelete, error: errorDelete, success: successDelete } = discDelete
 
+    const discCreate = useSelector(state => state.discCreate)
+    const { 
+        loading: loadingCreate,
+        error: errorCreate,
+        success: successCreate,
+        disc: createdDisc
+    } = discCreate
+
     useEffect(() => {
-        if(userInfo && userInfo.isAdmin) {
-            dispatch(listDisc())
-        } else {
+        dispatch({ type: DISC_CREATE_RESET })
+        if(!userInfo.isAdmin) {
             history.push('/login')
+        } 
+
+        if(successCreate) {
+            history.push(`/admin/disc/${createdDisc._id}/edit`)
+        } else {
+            dispatch(listDisc())
         }
-    }, [dispatch, history, userInfo, successDelete])
+    }, [dispatch, history, userInfo, successDelete, successCreate, createdDisc])
 
     const deleteHandler = (id) => {
         if(window.confirm('Are you sure?')) {
@@ -34,8 +48,8 @@ const DiscListScreen = ({ history, match }) => {
         }
     }
 
-    const createDiscHandler = (disc) => {
-        // CREATE DISC
+    const createDiscHandler = () => {
+        dispatch(createDisc())
     }
 
     return (
@@ -52,6 +66,8 @@ const DiscListScreen = ({ history, match }) => {
             </Row>
             { loadingDelete && <Loader /> }
             { errorDelete && <Message variant='danger'>{ errorDelete }</Message> }
+            { loadingCreate && <Loader /> }
+            { errorCreate && <Message variant='danger'>{ errorCreate }</Message> }
             {
                 loading
                     ? <Loader />

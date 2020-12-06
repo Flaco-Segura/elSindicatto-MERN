@@ -8,7 +8,10 @@ import {
     DISC_DETAILS_FAIL,
     DISC_DELETE_FAIL,
     DISC_DELETE_REQUEST,
-    DISC_DELETE_SUCCESS
+    DISC_DELETE_SUCCESS,
+    DISC_CREATE_FAIL,
+    DISC_CREATE_REQUEST,
+    DISC_CREATE_SUCCESS
 } from '../constants/discConstants'
 
 export const listDisc = () => async (dispatch) => {
@@ -51,7 +54,7 @@ export const listDiscDetails = (id) => async (dispatch) => {
     }
 }
 
-export const deleteDisc = (id) => async (dispatch) => {
+export const deleteDisc = (id) => async (dispatch, getState) => {
     try {
         dispatch({ type: DISC_DELETE_REQUEST })
 
@@ -72,6 +75,35 @@ export const deleteDisc = (id) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: DISC_DELETE_FAIL,
+            payload: error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message
+        })
+    }
+}
+
+export const createDisc = () => async (dispatch, getState) => {
+    try {
+        dispatch({ type: DISC_CREATE_REQUEST })
+
+        const { userLogin: { userInfo } } = getState()
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+
+        const { data } = await axios.post('/api/discs', {}, config)
+
+        dispatch({
+            type: DISC_CREATE_SUCCESS,
+            payload: data
+        })
+    } catch (error) {
+        dispatch({
+            type: DISC_CREATE_FAIL,
             payload: error.response && error.response.data.message
                 ? error.response.data.message
                 : error.message

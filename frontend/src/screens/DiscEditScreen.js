@@ -5,9 +5,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import FormContainer from '../components/FormContainer'
-import { listDiscDetails } from '../actions/discActions'
+import { listDiscDetails, updateDisc } from '../actions/discActions'
+import { DISC_UPDATE_RESET } from '../constants/discConstants'
 
-const DiscEditScreen = ({ match }) => {
+const DiscEditScreen = ({ match, history }) => {
     const discId = match.params.id
 
     const [name, setName] = useState('')
@@ -23,24 +24,40 @@ const DiscEditScreen = ({ match }) => {
     const discDetails = useSelector(state => state.discDetails)
     const { loading, error, disc } = discDetails
 
-    useEffect(() => { 
-        if(disc === undefined || disc._id !== discId) {
-            dispatch(listDiscDetails(discId))
+    const discUpdate = useSelector(state => state.discUpdate)
+    const { loading: loadingUpdate, error: errorUpdate, success: successUpdate } = discUpdate
+
+    useEffect(() => {
+        if(successUpdate) {
+            dispatch({ type: DISC_UPDATE_RESET })
+            history.push('/admin/disclist')
         } else {
-            setName(disc.name)
-            setPrice(disc.price)
-            setImage(disc.image)
-            setBrand(disc.brand)
-            setCategory(disc.category)
-            setCountInStock(disc.countInStock)
-            setFormat(disc.format)
-        }
-        
-    }, [dispatch, discId, disc])
+            if(disc === undefined || disc._id !== discId) {
+                dispatch(listDiscDetails(discId))
+            } else {
+                setName(disc.name)
+                setPrice(disc.price)
+                setImage(disc.image)
+                setBrand(disc.brand)
+                setCategory(disc.category)
+                setCountInStock(disc.countInStock)
+                setFormat(disc.format)
+            }
+        }        
+    }, [dispatch, discId, disc, successUpdate, history])
 
     const submitHandler = (e) => {
         e.preventDefault()
-        // UPDATE DISC
+        dispatch(updateDisc({
+            _id: discId,
+            name,
+            price,
+            image,
+            brand,
+            category,
+            countInStock,
+            format
+        }))
     }
 
     return <>
@@ -49,6 +66,8 @@ const DiscEditScreen = ({ match }) => {
         </Link>
         <FormContainer>
             <h1>Edit Disc</h1>
+            { loadingUpdate && <Loader /> }
+            { errorUpdate && <Message variant='danger'>{ errorUpdate }</Message> }
             { loading
                 ? <Loader/>
                 : error

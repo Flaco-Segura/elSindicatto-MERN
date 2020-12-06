@@ -11,7 +11,11 @@ import {
     DISC_CREATE_FAIL,
     DISC_CREATE_REQUEST,
     DISC_CREATE_RESET,
-    DISC_CREATE_SUCCESS
+    DISC_CREATE_SUCCESS,
+    DISC_UPDATE_FAIL,
+    DISC_UPDATE_REQUEST,
+    DISC_UPDATE_RESET,
+    DISC_UPDATE_SUCCESS
 } from '../constants/discConstants'
 
 export const discListReducer = (state = { discs: [] }, action) => {
@@ -63,6 +67,21 @@ export const discCreateReducer = (state = {}, action) => {
             return { loading: false, error: action.payload }
         case DISC_CREATE_RESET:
             return {}
+        default:
+            return state
+    }
+}
+
+export const discUpdateReducer = (state = { disc: {} }, action) => {
+    switch(action.type) {
+        case DISC_UPDATE_REQUEST:
+            return { loading: true }
+        case DISC_UPDATE_SUCCESS:
+            return { loading: false, success: true, disc: action.payload }
+        case DISC_UPDATE_FAIL:
+            return { loading: false, error: action.payload }
+        case DISC_UPDATE_RESET:
+            return { disc: {} }
         default:
             return state
     }

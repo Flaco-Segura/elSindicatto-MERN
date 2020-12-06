@@ -5,7 +5,8 @@ import {
     discListReducer,
     discDetailsReducer,
     discDeleteReducer,
-    discCreateReducer
+    discCreateReducer,
+    discUpdateReducer
 } from './reducers/discReducers'
 import { cartReducer } from './reducers/cartReducers'
 import { 
@@ -29,6 +30,7 @@ const reducer = combineReducers({
     discDetails: discDetailsReducer,
     discDelete: discDeleteReducer,
     discCreate: discCreateReducer,
+    discUpdate: discUpdateReducer,
     cart: cartReducer,
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,

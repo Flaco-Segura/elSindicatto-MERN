@@ -59,4 +59,28 @@ const createDisc = asyncHandler(async(req, res) => {
     res.status(201).json(createdDisc)
 })
 
-export { getDiscs, getDiscById, deleteDisc, createDisc }
+// @desc    Update a disc
+// @route   PUT /api/discs/:id
+// @access  Private/Admin
+const updateDisc = asyncHandler(async(req, res) => {
+    const disc = await Disc.findById(req.params.id)
+
+    if(disc) {
+        disc.name = req.body.name || disc.name
+        disc.price = req.body.price || disc.price
+        disc.image = req.body.image || disc.image
+        disc.brand = req.body.brand || disc.brand
+        disc.category = req.body.category || disc.category
+        disc.countInStock = req.body.countInStock || disc.countInStock
+        disc.format = req.body.format || disc.format
+
+        const updatedDisc = await disc.save()
+
+        res.json(updatedDisc)
+    } else {
+        res.status(404)
+        throw new Error('User not found')
+    }
+})
+
+export { getDiscs, getDiscById, deleteDisc, createDisc, updateDisc }

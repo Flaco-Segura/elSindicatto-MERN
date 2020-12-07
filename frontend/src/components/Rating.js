@@ -6,7 +6,7 @@ const Rating = ({ value, text, color }) => {
         <div className='rating'>
             {stars(value, color)}
             <span>{text && text}</span>
-        </div>
+        </div>       
     )
 }
 

@@ -38,7 +38,7 @@ const discSchema = mongoose.Schema({
     rating: {
         type: Number,
         required: true,
-        default: true
+        default: 0
     },
     numReviews: {
         type: Number,

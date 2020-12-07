@@ -7,8 +7,7 @@ import Loader from '../components/Loader'
 import { listDisc, deleteDisc, createDisc } from '../actions/discActions'
 import { DISC_CREATE_RESET } from '../constants/discConstants'
 
-const DiscListScreen = ({ history, match }) => {
-    // const discId = match.params.id
+const DiscListScreen = ({ history }) => {
 
     const dispatch = useDispatch()
 

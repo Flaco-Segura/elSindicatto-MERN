@@ -80,7 +80,7 @@ const updateDisc = asyncHandler(async(req, res) => {
         res.json(updatedDisc)
     } else {
         res.status(404)
-        throw new Error('User not found')
+        throw new Error('Disc not found')
     }
 })
 
@@ -109,15 +109,15 @@ const createDiscReview = asyncHandler(async(req, res) => {
 
         disc.reviews.push(review)
 
-        disc.numReview = disc.reviews.length
+        disc.numReviews = disc.reviews.length
 
-        disc.rating = disc.reviews.reduce((acc, item) => item.rating + acc) / disc.reviews.length
+        disc.rating = disc.reviews.reduce((acc, item) => item.rating + acc, 0) / disc.numReviews
 
         await disc.save()
         res.status(201).json({ message: 'Review added' })
     } else {
         res.status(404)
-        throw new Error('User not found')
+        throw new Error('Disc not found')
     }
 })
 

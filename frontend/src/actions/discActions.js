@@ -14,7 +14,10 @@ import {
     DISC_CREATE_SUCCESS,
     DISC_UPDATE_FAIL,
     DISC_UPDATE_REQUEST,
-    DISC_UPDATE_SUCCESS
+    DISC_UPDATE_SUCCESS,
+    DISC_CREATE_REVIEW_FAIL,
+    DISC_CREATE_REVIEW_REQUEST,
+    DISC_CREATE_REVIEW_SUCCESS
 } from '../constants/discConstants'
 
 export const listDisc = () => async (dispatch) => {
@@ -136,6 +139,34 @@ export const updateDisc = (disc) => async (dispatch, getState) => {
     } catch (error) {
         dispatch({
             type: DISC_UPDATE_FAIL,
+            payload: error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message
+        })
+    }
+}
+
+export const createDiscReview = (discId, review) => async (dispatch, getState) => {
+    try {
+        dispatch({ type: DISC_CREATE_REVIEW_REQUEST })
+
+        const { userLogin: { userInfo } } = getState()
+        
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+
+        await axios.post(`/api/discs/${discId}/reviews`, review, config)
+
+        dispatch({
+            type: DISC_CREATE_REVIEW_SUCCESS
+        })
+    } catch (error) {
+        dispatch({
+            type: DISC_CREATE_REVIEW_FAIL,
             payload: error.response && error.response.data.message
                 ? error.response.data.message
                 : error.message

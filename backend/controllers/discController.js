@@ -1,3 +1,4 @@
+import { response } from 'express'
 import asyncHandler from 'express-async-handler'
 import Disc from '../models/discModel.js'
 
@@ -83,4 +84,41 @@ const updateDisc = asyncHandler(async(req, res) => {
     }
 })
 
-export { getDiscs, getDiscById, deleteDisc, createDisc, updateDisc }
+// @desc    Create new review
+// @route   POST /api/discs/:id/reviews
+// @access  Private
+const createDiscReview = asyncHandler(async(req, res) => {
+    const { rating, comment } = req.body
+
+    const disc = await Disc.findById(req.params.id)
+
+    if(disc) {
+        const alreadyReviewed = disc.reviews.find(r => r.user.toString() == req.user._id.toString())
+
+        if(alreadyReviewed) {
+            res.status(400)
+            throw new Error('Disc already reviewed')
+        }
+
+        const review = {
+            name: req.user.name,
+            rating: Number(rating),
+            comment,
+            user: req.user._id
+        }
+
+        disc.reviews.push(review)
+
+        disc.numReview = disc.reviews.length
+
+        disc.rating = disc.reviews.reduce((acc, item) => item.rating + acc) / disc.reviews.length
+
+        await disc.save()
+        res.status(201).json({ message: 'Review added' })
+    } else {
+        res.status(404)
+        throw new Error('User not found')
+    }
+})
+
+export { getDiscs, getDiscById, deleteDisc, createDisc, updateDisc, createDiscReview }

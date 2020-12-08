@@ -24,7 +24,7 @@ const OrderScreen = ({ match, history }) => {
     const { loading: loadingPay, success: successPay } = orderPay
 
     const orderDeliver = useSelector(state => state.orderDeliver)
-    const { loading: loadingDeliver, success: successDeliver } = orderDeliver
+    const { loading: loadingDeliver, success: successDeliver, error: errorDeliver } = orderDeliver
 
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
@@ -113,7 +113,7 @@ const OrderScreen = ({ match, history }) => {
                                                     <Image src={item.image} alt={item.name} fluid />
                                                 </Col>
                                                 <Col>
-                                                    <Link to={`/products/${item.disc}`}>{item.name}</Link>
+                                                    <Link to={`/disc/${item.disc}`}>{item.name}</Link>
                                                 </Col>
                                                 <Col md={4}>
                                                     {item.qty} x {item.price.toFixed(2)}€ = { (item.qty * item.price).toFixed(2) }€
@@ -155,7 +155,7 @@ const OrderScreen = ({ match, history }) => {
                                         <Col>{ ammountFixed(order.totalPrice)}€</Col>
                                     </Row>
                                 </ListGroup.Item>
-                                {!order.isPaid && <ListGroup.Item>
+                                {!order.isPaid && !userInfo.isAdmin && <ListGroup.Item>
                                     {loadingPay && <Loader />}
                                     {!sdkReady
                                         ? <Loader />
@@ -166,6 +166,7 @@ const OrderScreen = ({ match, history }) => {
                                     }
                                 </ListGroup.Item> }
                                 { loadingDeliver && <Loader /> }
+                                { errorDeliver && <Message variant='danger'>{ errorDeliver }</Message> }
                                 {
                                     userInfo
                                         && userInfo.isAdmin

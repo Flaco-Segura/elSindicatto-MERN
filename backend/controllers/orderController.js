@@ -1,5 +1,6 @@
 import asyncHandler from 'express-async-handler'
 import Order from '../models/orderModel.js'
+import Disc from '../models/discModel.js'
 
 // @desc    Create new order
 // @route   POST /api/orders
@@ -99,12 +100,29 @@ const updateOrderToDelivered = asyncHandler(async(req, res) => {
     const order = await Order.findById(req.params.id)
 
     if(order) {
-        order.isDelivered = true
-        order.deliveredAt = Date.now()
+        let notAvailables = []
 
-        const updatedOrder = await order.save()
+        await Promise.all(order.orderItems.map( async item => {
+            const disc = await Disc.findById(item.disc)
+            if (Number(item.qty) > disc.countInStock) {
+                return notAvailables.push(disc.name)
+            } else {
+                disc.countInStock = disc.countInStock - Number(item.qty)
+                disc.save()
+            }
+        }))
 
-        res.json(updatedOrder)
+        if(notAvailables.length === 0) {
+            order.isDelivered = true
+            order.deliveredAt = Date.now()
+
+            const updatedOrder = await order.save()
+
+            res.json(updatedOrder)
+        } else {
+            res.status(400)
+            throw new Error(`Not enough stock of: ${notAvailables.toString()}`)
+        }
     } else {
         res.status(404)
         throw new Error('Order not found')

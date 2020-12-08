@@ -1,4 +1,3 @@
-import { response } from 'express'
 import asyncHandler from 'express-async-handler'
 import Disc from '../models/discModel.js'
 

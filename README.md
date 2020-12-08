@@ -37,3 +37,9 @@ npm run dev
 # Run backend only
 npm run server
 ```
+
+### Populate/Drop Database
+```
+npm run data:import
+npm run data:destroy
+```

@@ -19,7 +19,10 @@ import {
     DISC_CREATE_REVIEW_FAIL,
     DISC_CREATE_REVIEW_REQUEST,
     DISC_CREATE_REVIEW_SUCCESS,
-    DISC_CREATE_REVIEW_RESET
+    DISC_CREATE_REVIEW_RESET,
+    DISC_TOP_FAIL,
+    DISC_TOP_REQUEST,
+    DISC_TOP_SUCCESS
 } from '../constants/discConstants'
 
 export const discListReducer = (state = { discs: [] }, action) => {
@@ -106,6 +109,19 @@ export const discReviewCreateReducer = (state = { }, action) => {
             return { loading: false, error: action.payload }
         case DISC_CREATE_REVIEW_RESET:
             return { }
+        default:
+            return state
+    }
+}
+
+export const discTopRatedReducer = (state = { discs: [] }, action) => {
+    switch(action.type) {
+        case DISC_TOP_REQUEST:
+            return { loading: true, discs: [] }
+        case DISC_TOP_SUCCESS:
+            return { loading: false, discs: action.payload }
+        case DISC_TOP_FAIL:
+            return { loading: false, error: action.payload }
         default:
             return state
     }

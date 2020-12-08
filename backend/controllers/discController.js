@@ -129,4 +129,13 @@ const createDiscReview = asyncHandler(async(req, res) => {
     }
 })
 
-export { getDiscs, getDiscById, deleteDisc, createDisc, updateDisc, createDiscReview }
+// @desc    Get top rated discs
+// @route   GET /api/discs/top
+// @access  Public
+const getTopDiscs = asyncHandler(async(req, res) => {
+    const discs = await Disc.find({}).sort({ rating: -1 }).limit(3)
+
+    res.json(discs)
+})
+
+export { getDiscs, getDiscById, deleteDisc, createDisc, updateDisc, createDiscReview, getTopDiscs }

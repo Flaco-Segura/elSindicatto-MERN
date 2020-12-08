@@ -17,7 +17,10 @@ import {
     DISC_UPDATE_SUCCESS,
     DISC_CREATE_REVIEW_FAIL,
     DISC_CREATE_REVIEW_REQUEST,
-    DISC_CREATE_REVIEW_SUCCESS
+    DISC_CREATE_REVIEW_SUCCESS,
+    DISC_TOP_FAIL,
+    DISC_TOP_REQUEST,
+    DISC_TOP_SUCCESS
 } from '../constants/discConstants'
 
 export const listDisc = (keyword = '', pageNumber = '') => async (dispatch) => {
@@ -173,3 +176,24 @@ export const createDiscReview = (discId, review) => async (dispatch, getState) =
         })
     }
 }
+
+export const listTopDiscs = () => async (dispatch) => {
+    try {
+        dispatch({ type: DISC_TOP_REQUEST })
+
+        const { data } = await axios.get(`/api/discs/top`)
+
+        dispatch({
+            type: DISC_TOP_SUCCESS,
+            payload: data
+        })
+    } catch (error) {
+        dispatch({
+            type: DISC_TOP_FAIL,
+            payload: error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message
+        })
+    }
+}
+

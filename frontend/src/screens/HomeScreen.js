@@ -5,6 +5,7 @@ import Disc from '../components/Disc'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import Paginate from '../components/Paginate'
+import DiscCarousel from '../components/DiscCarousel'
 import { listDisc } from '../actions/discActions'
 
 const HomeScreen = ({ match }) => {
@@ -21,6 +22,7 @@ const HomeScreen = ({ match }) => {
     }, [dispatch, keyword, pageNumber])
 
     return <>
+            { !keyword && <DiscCarousel /> }
             <h1>Latest Discs</h1>
 
             { loading 

@@ -6,6 +6,7 @@ import Rating from '../components/Rating'
 import { listDiscDetails, createDiscReview } from '../actions/discActions'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
+import Meta from '../components/Meta'
 import { humanizeDate } from '../services/dateServices'
 import { DISC_CREATE_REVIEW_RESET } from '../constants/discConstants'
 
@@ -52,6 +53,7 @@ const DiscScreen = ({ history, match }) => {
             : error 
                 ? <Message variant='danger'>{ error }</Message> 
                 : <>
+                    <Meta title={disc.name}/>
                     <Row>
                         <Col md={6}>
                             <Image src={disc.image} alt={disc.name} fluid/>

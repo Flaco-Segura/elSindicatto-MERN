@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col } from 'react-bootstrap'
 import Disc from '../components/Disc'
@@ -6,6 +7,7 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import Paginate from '../components/Paginate'
 import DiscCarousel from '../components/DiscCarousel'
+import Meta from '../components/Meta'
 import { listDisc } from '../actions/discActions'
 
 const HomeScreen = ({ match }) => {
@@ -22,7 +24,10 @@ const HomeScreen = ({ match }) => {
     }, [dispatch, keyword, pageNumber])
 
     return <>
-            { !keyword && <DiscCarousel /> }
+            <Meta />
+            { !keyword 
+                ? <DiscCarousel />
+                : <Link to='/' className='btn btn-light'>Go Back</Link> }
             <h1>Latest Discs</h1>
 
             { loading 

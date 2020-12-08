@@ -6,15 +6,17 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { listDisc } from '../actions/discActions'
 
-const HomeScreen = () => {
+const HomeScreen = ({ match }) => {
+    const keyword = match.params.keyword
+
     const dispatch = useDispatch()
 
     const discList = useSelector( state => state.discList )
     const { loading, error, discs } = discList
 
     useEffect(() => {
-        dispatch(listDisc())
-    }, [dispatch])
+        dispatch(listDisc(keyword))
+    }, [dispatch, keyword])
 
     return (
         <>

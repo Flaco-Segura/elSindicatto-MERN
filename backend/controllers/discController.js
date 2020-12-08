@@ -6,7 +6,11 @@ import Disc from '../models/discModel.js'
 // @route   GET /api/discs
 // @access  Public
 const getDiscs = asyncHandler(async(req, res) => {
-    const discs = await Disc.find({})
+    const keyword = req.query.keyword
+        ? { name: { $regex: req.query.keyword, $options: 'i' } }
+        : {}
+
+    const discs = await Disc.find({...keyword})
 
     res.json(discs)
 })

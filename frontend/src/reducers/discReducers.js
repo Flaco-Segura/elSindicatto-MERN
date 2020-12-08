@@ -27,7 +27,12 @@ export const discListReducer = (state = { discs: [] }, action) => {
         case DISC_LIST_REQUEST:
             return { loading: true, discs: [] }
         case DISC_LIST_SUCCESS:
-            return { loading: false, discs: action.payload }
+            return {
+                loading: false,
+                discs: action.payload.discs,
+                pages: action.payload.pages,
+                page: action.payload.page
+            }
         case DISC_LIST_FAIL:
             return { loading: false, error: action.payload }
         default:

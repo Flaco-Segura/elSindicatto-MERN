@@ -4,15 +4,17 @@ import { Table, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
+import Paginate from '../components/Paginate'
 import { listDisc, deleteDisc, createDisc } from '../actions/discActions'
 import { DISC_CREATE_RESET } from '../constants/discConstants'
 
-const DiscListScreen = ({ history }) => {
+const DiscListScreen = ({ history, match }) => {
+    const pageNumber = match.params.pageNumber || 1
 
     const dispatch = useDispatch()
 
     const discList = useSelector(state => state.discList)
-    const { loading, error, discs } = discList
+    const { loading, error, discs, pages, page } = discList
 
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
@@ -37,9 +39,9 @@ const DiscListScreen = ({ history }) => {
         if(successCreate) {
             history.push(`/admin/disc/${createdDisc._id}/edit`)
         } else {
-            dispatch(listDisc())
+            dispatch(listDisc('', pageNumber))
         }
-    }, [dispatch, history, userInfo, successDelete, successCreate, createdDisc])
+    }, [dispatch, history, userInfo, successDelete, successCreate, createdDisc, pageNumber])
 
     const deleteHandler = (id) => {
         if(window.confirm('Are you sure?')) {
@@ -72,40 +74,43 @@ const DiscListScreen = ({ history }) => {
                     ? <Loader />
                     : error
                         ? <Message variant='danger'>{error}</Message>
-                        : <Table  striped bordered hover responsive className='table-sm'>
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>NAME</th>
-                                    <th>PRICE</th>
-                                    <th>CATEGORY</th>
-                                    <th>BRAND</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                { discs.map(disc => <tr key={disc._id}>
-                                    <td>{ disc._id }</td>
-                                    <td>{ disc.name }</td>
-                                    <td>{ Number(disc.price).toFixed(2) }€</td>
-                                    <td>{ disc.category }</td>
-                                    <td>{ disc.brand }</td>
-                                    <td>
-                                        <LinkContainer to={`/admin/disc/${disc._id}/edit`}>
-                                            <Button variant='light' className='btn-sm'>
-                                                <i className='fas fa-edit'></i>
+                        : <>
+                            <Table  striped bordered hover responsive className='table-sm'>
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>NAME</th>
+                                        <th>PRICE</th>
+                                        <th>CATEGORY</th>
+                                        <th>BRAND</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    { discs.map(disc => <tr key={disc._id}>
+                                        <td>{ disc._id }</td>
+                                        <td>{ disc.name }</td>
+                                        <td>{ Number(disc.price).toFixed(2) }€</td>
+                                        <td>{ disc.category }</td>
+                                        <td>{ disc.brand }</td>
+                                        <td>
+                                            <LinkContainer to={`/admin/disc/${disc._id}/edit`}>
+                                                <Button variant='light' className='btn-sm'>
+                                                    <i className='fas fa-edit'></i>
+                                                </Button>
+                                            </LinkContainer>
+                                            <Button
+                                                variant='danger' 
+                                                className='btn-sm'
+                                                onClick={() => deleteHandler(disc._id)}>
+                                                <i className='fas fa-trash'></i>
                                             </Button>
-                                        </LinkContainer>
-                                        <Button
-                                            variant='danger' 
-                                            className='btn-sm'
-                                            onClick={() => deleteHandler(disc._id)}>
-                                            <i className='fas fa-trash'></i>
-                                        </Button>
-                                    </td>
-                                </tr>)}
-                            </tbody>
-                        </Table>
+                                        </td>
+                                    </tr>)}
+                                </tbody>
+                            </Table>
+                            <Paginate pages={pages} page={page} isAdmin={true}/>
+                        </>
             }
         </>
     )

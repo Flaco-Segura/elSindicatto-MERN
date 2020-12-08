@@ -20,11 +20,11 @@ import {
     DISC_CREATE_REVIEW_SUCCESS
 } from '../constants/discConstants'
 
-export const listDisc = (keyword = '') => async (dispatch) => {
+export const listDisc = (keyword = '', pageNumber = '') => async (dispatch) => {
     try {
         dispatch({ type: DISC_LIST_REQUEST })
 
-        const { data } = await axios.get(`/api/discs?keyword=${keyword}`)
+        const { data } = await axios.get(`/api/discs?keyword=${keyword}&pageNumber=${pageNumber}`)
 
         dispatch({
             type: DISC_LIST_SUCCESS,

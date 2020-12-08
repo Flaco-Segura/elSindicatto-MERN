@@ -6,13 +6,17 @@ import Disc from '../models/discModel.js'
 // @route   GET /api/discs
 // @access  Public
 const getDiscs = asyncHandler(async(req, res) => {
+    const pageSize = 12
+    const page = Number(req.query.pageNumber) || 1
+
     const keyword = req.query.keyword
         ? { name: { $regex: req.query.keyword, $options: 'i' } }
         : {}
 
-    const discs = await Disc.find({...keyword})
+    const count = await Disc.countDocuments({...keyword})
+    const discs = await Disc.find({...keyword}).limit(pageSize).skip(pageSize * (page - 1))
 
-    res.json(discs)
+    res.json({discs, page, pages: Math.ceil(count / pageSize)})
 })
 
 // @desc    Fetch single disc
